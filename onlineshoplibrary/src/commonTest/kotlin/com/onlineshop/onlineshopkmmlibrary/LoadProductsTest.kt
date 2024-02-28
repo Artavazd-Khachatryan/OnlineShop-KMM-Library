@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshopkmmlibrary
 
-import com.onlineshop.onlineshopkmmlibrary.dependancy_injection.appModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.appModule
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllProductsUseCase
