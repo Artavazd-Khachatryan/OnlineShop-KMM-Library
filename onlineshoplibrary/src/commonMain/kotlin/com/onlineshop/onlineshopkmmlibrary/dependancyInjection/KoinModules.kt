@@ -13,7 +13,6 @@ import io.ktor.client.plugins.logging.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.KoinApplication
-import org.koin.core.context.startKoin
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -23,13 +22,11 @@ object Qualifiers {
 }
 
 
-fun initKoin() {
-    startKoin {
-        koinModules()
-    }
+fun KoinApplication.initKoin() {
+    shopLibraryKoinModules()
 }
 
-fun KoinApplication.koinModules() = modules(appModule(), asyncModule(), networking())
+fun KoinApplication.shopLibraryKoinModules() = modules(appModule(), asyncModule(), networking())
 
 fun appModule() = module {
     factory<ShopRepository> { NetworkShopRepository(get()) }
@@ -64,7 +61,7 @@ fun networking() = module {
 
     factory {
         httpClient {
-           install(Logging)
+            install(Logging)
         }
     }
 
