@@ -6,7 +6,7 @@ plugins {
     id("maven-publish") // TODO move to plugins section
 }
 
-group = "com.onlineshop"
+group = "com.github.Artavazd-Khachatryan"
 version = "1.0"
 
 publishing {
