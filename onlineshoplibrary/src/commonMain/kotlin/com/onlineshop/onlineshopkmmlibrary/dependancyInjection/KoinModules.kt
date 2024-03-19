@@ -3,12 +3,15 @@ package com.onlineshop.onlineshopkmmlibrary.dependancyInjection
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
 import com.onlineshop.onlineshopkmmlibrary.httpClient
+import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClient
+import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClientImpl
 import com.onlineshop.onlineshopkmmlibrary.repository.NetworkProductRepository
 import com.onlineshop.onlineshopkmmlibrary.repository.NetworkShopRepository
 import com.onlineshop.onlineshopkmmlibrary.repository.ProductRepository
 import com.onlineshop.onlineshopkmmlibrary.repository.ShopRepository
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllProductsUseCase
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllShoppesUseCase
+import com.onlineshop.onlineshopkmmlibrary.useCases.LoadTestDataUseCase
 import io.ktor.client.plugins.logging.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -20,7 +23,6 @@ object Qualifiers {
     val BaseUrl = named("BaseUrl")
     val Login = named("Login")
 }
-
 
 fun KoinApplication.initKoin() {
     shopLibraryKoinModules()
@@ -38,6 +40,8 @@ fun appModule() = module {
     factory<LoadAllShoppesUseCase> { LoadAllShoppesUseCase(get(), get()) }
 
     factory { LoadAllProductsUseCase(get(), get()) }
+
+    factory { LoadTestDataUseCase(get(), get())}
 }
 
 fun asyncModule() = module {
@@ -65,5 +69,5 @@ fun networking() = module {
         }
     }
 
-    // factory { OnlineShopClient(get()) }
+    factory<OnlineShopClient> { OnlineShopClientImpl(get()) }
 }

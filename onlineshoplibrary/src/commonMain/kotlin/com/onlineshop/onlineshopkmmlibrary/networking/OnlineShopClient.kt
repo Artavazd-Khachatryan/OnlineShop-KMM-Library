@@ -1,9 +1,8 @@
 package com.onlineshop.onlineshopkmmlibrary.networking
 
-import io.ktor.client.*
+interface OnlineShopClient {
 
-internal interface OnlineShopClient {
-
+    suspend fun testCall(): String
     // shop
     // post    /api/v1/shop
     // get     /api/v1/shop
