@@ -4,7 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
-    id("maven-publish") // TODO move to plugins section
+    `maven-publish`
 }
 
 group = "com.github.Artavazd-Khachatryan"
