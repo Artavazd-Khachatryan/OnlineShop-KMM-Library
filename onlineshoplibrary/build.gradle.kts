@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinxSerialization)
+    alias(libs.plugins.sqlDelight)
     `maven-publish`
 }
 
@@ -48,6 +49,8 @@ kotlin {
             implementation(libs.ktor.logging)
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.kotlin.serialization)
+            implementation(libs.sqldelight.runtime)
+            implementation(libs.touchlab.stately.common)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
@@ -58,9 +61,14 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
+            implementation(libs.sqldelight.android.driver)
+            implementation(libs.sqldelight.coroutines.extensions)
+            implementation(libs.sqldelight.test.driver)
         }
+
         iosMain.dependencies {
             implementation(libs.ktor.client.darwin)
+            implementation(libs.sqldelight.native.driver)
         }
     }
 }
@@ -70,5 +78,14 @@ android {
     compileSdk = 34
     defaultConfig {
         minSdk = 28
+    }
+}
+
+sqldelight {
+    databases {
+        create("OnlineShopDB") {
+            verifyMigrations.set(true)
+            packageName.set("com.onlineshop.database")
+        }
     }
 }

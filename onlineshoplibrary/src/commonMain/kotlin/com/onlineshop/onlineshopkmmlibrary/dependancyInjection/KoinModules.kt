@@ -1,7 +1,9 @@
 package com.onlineshop.onlineshopkmmlibrary.dependancyInjection
 
+import com.onlineshop.database.OnlineShopDB
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
+import com.onlineshop.onlineshopkmmlibrary.datasource.createDatabase
 import com.onlineshop.onlineshopkmmlibrary.httpClient
 import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClient
 import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClientImpl
@@ -18,6 +20,7 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.KoinApplication
+import org.koin.core.module.Module
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
@@ -29,10 +32,12 @@ fun KoinApplication.initKoin() {
     shopLibraryKoinModules()
 }
 
-fun KoinApplication.shopLibraryKoinModules() = modules(appModule(), asyncModule(), networking())
+fun KoinApplication.shopLibraryKoinModules() = modules(appModule(), asyncModule(), networking(), databaseModule(), sqlDelightDriverModule)
 
 fun appModule() = module {
-    factory<ShopRepository> { NetworkShopRepository(get()) }
+    factory<ShopRepository> {
+        NetworkShopRepository(get())
+    }
 
     factory<ProductRepository> { NetworkProductRepository(get()) }
 
@@ -69,3 +74,9 @@ fun networking() = module {
 
     factory<OnlineShopClient> { OnlineShopClientImpl(get()) }
 }
+
+fun databaseModule() = module {
+    single<OnlineShopDB> { createDatabase(get()) }
+}
+
+expect val sqlDelightDriverModule: Module
