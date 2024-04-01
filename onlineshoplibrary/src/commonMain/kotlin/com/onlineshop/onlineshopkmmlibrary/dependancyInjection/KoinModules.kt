@@ -12,7 +12,9 @@ import com.onlineshop.onlineshopkmmlibrary.repository.ShopRepository
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllProductsUseCase
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllShoppesUseCase
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadTestDataUseCase
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.logging.*
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.core.KoinApplication
@@ -21,7 +23,6 @@ import org.koin.dsl.module
 
 object Qualifiers {
     val BaseUrl = named("BaseUrl")
-    val Login = named("Login")
 }
 
 fun KoinApplication.initKoin() {
@@ -57,15 +58,12 @@ fun networking() = module {
 
     factory(Qualifiers.BaseUrl) { "localhost:8080/api/v1/" }
 
-    factory(Qualifiers.Login) {
-        httpClient {
-            install(Logging)
-        }
-    }
-
     factory {
         httpClient {
             install(Logging)
+            install(ContentNegotiation) {
+                json()
+            }
         }
     }
 

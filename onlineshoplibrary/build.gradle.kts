@@ -3,6 +3,7 @@ import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidLibrary)
+    alias(libs.plugins.kotlinxSerialization)
     id("maven-publish") // TODO move to plugins section
 }
 
@@ -45,6 +46,8 @@ kotlin {
             implementation(libs.koin.core)
             implementation(libs.ktor.client.core)
             implementation(libs.ktor.logging)
+            implementation(libs.ktor.content.negotiation)
+            implementation(libs.ktor.kotlin.serialization)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

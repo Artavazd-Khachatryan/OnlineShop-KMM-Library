@@ -1,12 +1,18 @@
 package com.onlineshop.onlineshopkmmlibrary.networking
 
+import com.onlineshop.onlineshopkmmlibrary.model.ShopEntity
+import com.onlineshop.onlineshopkmmlibrary.model.ShopRequestModel
+
 interface OnlineShopClient {
 
     suspend fun testCall(): String
-    // shop
-    // post    /api/v1/shop
-    // get     /api/v1/shop
-    // get     /api/v1/shop/{id}
-    // delete  /api/v1/shop/{id}
+
+    suspend fun getShops(): List<ShopEntity>
+
+    suspend fun getShopWithId(id: Long): ShopEntity
+
+    suspend fun createShop(shopRequestModel: ShopRequestModel): ShopEntity
+
+    suspend fun deleteWithShopId(id: Long)
 
 }
