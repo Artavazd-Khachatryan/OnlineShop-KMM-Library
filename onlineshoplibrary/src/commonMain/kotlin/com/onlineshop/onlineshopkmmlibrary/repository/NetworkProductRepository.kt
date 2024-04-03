@@ -7,5 +7,5 @@ class NetworkProductRepository(private val dataSource: TestDataSource): ProductR
 
     override fun getAllProducts(): List<ProductEntity> = dataSource.productList
 
-    override fun getProducts(shopId: Long): List<ProductEntity> = getAllProducts().filter { it.shop == shopId }
+    override fun getProducts(shopId: Long): List<ProductEntity> = getAllProducts().filter { it.shopId == shopId }
 }

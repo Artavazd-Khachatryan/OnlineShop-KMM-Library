@@ -3,8 +3,7 @@ package com.onlineshop.onlineshopkmmlibrary.networking.model
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProductEntity(
-    val id: Long,
+class CreateProductRequestModel(
     val shopId: Long,
     val title: String? = null,
     val description: String? = null,

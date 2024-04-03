@@ -47,7 +47,7 @@ class LoadProductsTest : KoinTest {
 
     @Test
     fun testLoadProducts_Success() = runTest {
-        val expectedResult = testDataSource.productList.filter { it.shop == 1L }
+        val expectedResult = testDataSource.productList.filter { it.shopId == 1L }
         loadAllProductsUseCase.apply {
             onSuccess = { products ->
                 assertEquals(expectedResult, products)
