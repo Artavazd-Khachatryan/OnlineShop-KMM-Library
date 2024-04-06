@@ -1,0 +1,18 @@
+CREATE TABLE tokenEntity (
+id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+accessToken TEXT NOT NULL,
+refreshToken TEXT NOT NULL
+);
+
+insertToken:
+INSERT
+INTO tokenEntity(accessToken, refreshToken)
+VALUES (?, ?);
+
+getToken:
+SELECT *
+FROM tokenEntity
+LIMIT 1;
+
+deleteToken:
+DELETE FROM tokenEntity;

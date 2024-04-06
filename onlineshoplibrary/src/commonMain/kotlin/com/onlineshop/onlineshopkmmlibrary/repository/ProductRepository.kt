@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshopkmmlibrary.repository
 
-import com.onlineshop.onlineshopkmmlibrary.model.ProductEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ProductEntity
 
 interface ProductRepository {
 

@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshopkmmlibrary.networking
 
-import com.onlineshop.onlineshopkmmlibrary.model.ShopEntity
-import com.onlineshop.onlineshopkmmlibrary.model.ShopRequestModel
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ShopEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ShopRequestModel
 import io.ktor.client.*
 import io.ktor.client.call.body
 import io.ktor.client.request.*

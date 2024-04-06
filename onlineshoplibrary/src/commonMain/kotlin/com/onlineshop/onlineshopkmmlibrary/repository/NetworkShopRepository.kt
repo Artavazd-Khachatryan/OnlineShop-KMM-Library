@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshopkmmlibrary.repository
 
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
-import com.onlineshop.onlineshopkmmlibrary.model.ShopEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ShopEntity
 
 class NetworkShopRepository(private val testDataSource: TestDataSource): ShopRepository {
 

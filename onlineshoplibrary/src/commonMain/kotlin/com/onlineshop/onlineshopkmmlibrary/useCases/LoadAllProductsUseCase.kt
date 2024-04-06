@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshopkmmlibrary.useCases
 
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
-import com.onlineshop.onlineshopkmmlibrary.model.ProductEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ProductEntity
 import com.onlineshop.onlineshopkmmlibrary.repository.ProductRepository
 import kotlinx.coroutines.*
 

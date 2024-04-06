@@ -1,4 +1,4 @@
-package com.onlineshop.onlineshopkmmlibrary
+package com.onlineshop.onlineshopkmmlibrary.diTests
 
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.shopLibraryKoinModules
 import org.koin.test.KoinTest

@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshopkmmlibrary.datasource
 
-import com.onlineshop.onlineshopkmmlibrary.model.ProductEntity
-import com.onlineshop.onlineshopkmmlibrary.model.ShopEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ProductEntity
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ShopEntity
 
 class TestDataSource {
 

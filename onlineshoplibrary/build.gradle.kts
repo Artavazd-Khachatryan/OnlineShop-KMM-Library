@@ -50,6 +50,7 @@ kotlin {
             implementation(libs.ktor.content.negotiation)
             implementation(libs.ktor.kotlin.serialization)
             implementation(libs.sqldelight.runtime)
+            implementation(libs.sqldelight.coroutines.extensions)
             implementation(libs.touchlab.stately.common)
         }
         commonTest.dependencies {
@@ -62,7 +63,6 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.ktor.client.okhttp)
             implementation(libs.sqldelight.android.driver)
-            implementation(libs.sqldelight.coroutines.extensions)
             implementation(libs.sqldelight.test.driver)
         }
 

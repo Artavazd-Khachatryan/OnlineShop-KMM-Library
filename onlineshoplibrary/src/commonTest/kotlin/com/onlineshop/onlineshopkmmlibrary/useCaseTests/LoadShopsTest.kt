@@ -1,23 +1,24 @@
-package com.onlineshop.onlineshopkmmlibrary
+package com.onlineshop.onlineshopkmmlibrary.useCaseTests
 
-import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.appModule
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
-import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllProductsUseCase
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
-import kotlinx.coroutines.test.runTest
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.appModule
+import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllShoppesUseCase
+import kotlinx.coroutines.test.*
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.KoinTest
 import org.koin.test.inject
+import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class LoadProductsTest : KoinTest {
+class LoadShopsTest : KoinTest {
 
+    private val loadAllShoppesUseCase: LoadAllShoppesUseCase by inject()
     private val testDataSource: TestDataSource by inject()
-    private val loadAllProductsUseCase: LoadAllProductsUseCase by inject()
 
     @BeforeTest
     fun setup() = runTest {
@@ -36,15 +37,18 @@ class LoadProductsTest : KoinTest {
         }
     }
 
-    @Test
-    fun testLoadProducts_Success() = runTest {
-        val expectedResult = testDataSource.productList.filter { it.shop == 1L }
-        loadAllProductsUseCase.apply {
-            onSuccess = { products ->
-                assertEquals(expectedResult, products)
-            }
-            onFail = {}
-        }.execute(1L)
+    @AfterTest
+    fun clean() {
+        stopKoin()
     }
 
+    @Test
+    fun testLoadingShops_Success() = runTest {
+        loadAllShoppesUseCase.apply {
+            onSuccess = { shops ->
+                assertEquals(testDataSource.shopList, shops)
+            }
+            onFail = {}
+        }.execute()
+    }
 }

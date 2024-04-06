@@ -1,4 +1,4 @@
-package com.onlineshop.onlineshopkmmlibrary.model
+package com.onlineshop.onlineshopkmmlibrary.networking.model
 
 data class ProductEntity(
     val id: Long,

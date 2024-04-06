@@ -1,19 +1,17 @@
-package com.onlineshop.onlineshopkmmlibrary
+package com.onlineshop.onlineshopkmmlibrary.apiTests
 
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.networking
-import com.onlineshop.onlineshopkmmlibrary.model.ShopRequestModel
+import com.onlineshop.onlineshopkmmlibrary.networking.model.ShopRequestModel
 import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClient
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
 import kotlinx.coroutines.test.runTest
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest
 import org.koin.test.inject
-import kotlin.test.BeforeTest
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 
 class TestHttpClient: KoinTest {
@@ -23,6 +21,11 @@ class TestHttpClient: KoinTest {
         startKoin {
             modules(networking())
         }
+    }
+
+    @AfterTest
+    fun clean() {
+        stopKoin()
     }
 
     private val client: HttpClient by inject()
