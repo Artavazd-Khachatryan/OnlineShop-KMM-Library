@@ -6,12 +6,7 @@ import com.onlineshop.onlineshopkmmlibrary.repository.NetworkShopRepository
 import com.onlineshop.onlineshopkmmlibrary.repository.ProductRepository
 import com.onlineshop.onlineshopkmmlibrary.repository.ShopRepository
 import org.koin.core.KoinApplication
-import org.koin.core.qualifier.named
 import org.koin.dsl.module
-
-object Qualifiers {
-    val BaseUrl = named("BaseUrl")
-}
 
 fun KoinApplication.initKoin() {
     shopLibraryKoinModules()

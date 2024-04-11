@@ -2,12 +2,12 @@ package com.onlineshop.onlineshopkmmlibrary.useCases
 
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.networking.model.Token
-import com.onlineshop.onlineshopkmmlibrary.repository.LocalTokenRepository
+import com.onlineshop.onlineshopkmmlibrary.repository.TokenRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 class LoadTokenUseCase(
-    private val tokenRepository: LocalTokenRepository,
+    private val tokenRepository: TokenRepository,
     private val dispatcherProvider: DispatcherProvider
 ) {
 
@@ -18,7 +18,7 @@ class LoadTokenUseCase(
         CoroutineScope(dispatcherProvider.io).launch {
             try {
                 val result = tokenRepository.getToken()
-                onSuccess?.invoke(result)
+                onSuccess?.invoke(result!!)
             } catch (e: Exception) {
                 onFail?.invoke()
             }

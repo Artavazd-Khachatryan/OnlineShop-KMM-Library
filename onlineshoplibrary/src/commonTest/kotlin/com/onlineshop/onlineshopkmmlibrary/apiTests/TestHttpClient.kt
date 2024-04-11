@@ -4,6 +4,9 @@ import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.networking
 import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateShopRequestModel
 import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateProductRequestModel
 import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClient
+import com.onlineshop.onlineshopkmmlibrary.networking.login.LoginApi
+import com.onlineshop.onlineshopkmmlibrary.networking.login.SignInRequest
+import com.onlineshop.onlineshopkmmlibrary.networking.login.SignUpRequest
 import io.ktor.client.*
 import io.ktor.client.request.*
 import io.ktor.client.statement.*
@@ -30,12 +33,13 @@ class TestHttpClient : KoinTest {
     }
 
     private val client: HttpClient by inject()
+    private val loginApi: LoginApi by inject()
     private val onlineShopClient: OnlineShopClient by inject()
 
     @Test
     fun testClient() = runTest {
-        //val response: HttpResponse = client.get("https://ktor.io/")
-        val response: HttpResponse = client.get("http://localhost:8080/api/v1/shop")
+        val response: HttpResponse = client.get("https://ktor.io/")
+        //val response: HttpResponse = client.get("http://localhost:8080/api/v1/shop")
         assertEquals(200, response.status.value)
     }
 
@@ -95,5 +99,30 @@ class TestHttpClient : KoinTest {
         val response = client.delete("http://localhost:8080/" + "api/v1/product/4") {
         }
         assertEquals(204, response.status.value)
+    }
+
+    @Test
+    fun testSign() = runTest {
+        val requestBody = SignInRequest(
+            email = "john.doe@example1.com",
+            password = "password"
+        )
+        val token = loginApi.signin(requestBody)
+        assertNotNull(token.accessToken)
+        assertNotNull(token.refreshToken)
+    }
+
+    @Test
+    fun testSignup() = runTest {
+        val requestBody = SignUpRequest(
+            firstName = "John",
+            lastName = "Doe",
+            email = "john.doe@example1.com",
+            password = "password",
+            role = "USER"
+        )
+        val token = loginApi.signup(requestBody)
+        assertNotNull(token.accessToken)
+        assertNotNull(token.refreshToken)
     }
 }
