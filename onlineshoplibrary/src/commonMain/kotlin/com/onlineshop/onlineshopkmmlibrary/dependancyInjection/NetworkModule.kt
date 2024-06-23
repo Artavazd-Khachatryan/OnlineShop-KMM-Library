@@ -14,9 +14,17 @@ import io.ktor.serialization.kotlinx.json.*
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-private const val BASE_URL = "http://localhost:8080/api/v1/"
+private const val BASE_URL = "/api/v1/"
+
+expect val localhost: String
+
+private const val domain = "domaint uri"
 
 val LOGIN_CLIENT = named("Authentication")
+
+val LOCALHOST = named("localhost")
+
+val DOMAIN = named("domain")
 
 fun networking() = module {
 
@@ -38,7 +46,8 @@ fun networking() = module {
                 json()
             }
             defaultRequest {
-                url(BASE_URL)
+                val domain = get(LOCALHOST) as String
+                url("$domain/$BASE_URL")
             }
         }
     }
@@ -55,4 +64,12 @@ fun networking() = module {
     }
 
     factory<OnlineShopClient> { OnlineShopClientImpl(get()) }
+
+    single<String>(qualifier = LOCALHOST) {
+        localhost
+    }
+
+    single<String>(qualifier = DOMAIN) {
+        domain
+    }
 }
