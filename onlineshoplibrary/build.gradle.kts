@@ -21,12 +21,9 @@ kotlin {
     androidTarget {
         publishLibraryVariants("release", "debug")
         publishLibraryVariantsGroupedByFlavor = true
-        compilations.all {
-            kotlinOptions {
-                jvmTarget = "1.8"
-            }
-        }
     }
+
+    jvmToolchain(8)
 
     val xcf = XCFramework()
     listOf(

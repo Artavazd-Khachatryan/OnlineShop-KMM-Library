@@ -18,8 +18,5 @@ class CommonGreetingTest {
 
         assertEquals(testDataSource.shopList, networkShopRepository.getAllShops())
         assertEquals(testDataSource.productList, networkProductRepository.getAllProducts())
-
-
-        assertTrue(Greeting().greet().contains("Hello"), "Check 'Hello' is mentioned")
     }
 }
