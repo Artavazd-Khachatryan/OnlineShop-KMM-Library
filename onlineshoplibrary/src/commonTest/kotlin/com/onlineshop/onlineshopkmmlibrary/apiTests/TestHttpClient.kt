@@ -117,7 +117,7 @@ class TestHttpClient : KoinTest {
         val requestBody = SignUpRequest(
             firstName = "John",
             lastName = "Doe",
-            email = "john.doe@example1.com",
+            email = "john.doe@example.com",
             password = "password",
             role = "USER"
         )

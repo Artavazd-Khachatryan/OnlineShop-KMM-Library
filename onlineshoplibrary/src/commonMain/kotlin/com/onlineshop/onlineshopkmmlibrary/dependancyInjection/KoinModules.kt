@@ -12,9 +12,9 @@ fun KoinApplication.initKoin() {
     shopLibraryKoinModules()
 }
 
-fun KoinApplication.shopLibraryKoinModules() = modules(dataSourceModule(), asyncModule(), networking(), databaseModule(), useCaseModule, sqlDelightDriverModule)
+fun KoinApplication.shopLibraryKoinModules() = modules(repositoryModule(), asyncModule(), networking(), databaseModule(), useCaseModule, sqlDelightDriverModule)
 
-fun dataSourceModule() = module {
+fun repositoryModule() = module {
     factory<ShopRepository> {
         NetworkShopRepository(get())
     }

@@ -1,6 +1,6 @@
 package com.onlineshop.onlineshopkmmlibrary.useCaseTests
 
-import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.dataSourceModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.repositoryModule
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.useCaseModule
@@ -26,7 +26,7 @@ class LoadProductsTest : KoinTest {
     fun setup() = runTest {
         startKoin {
             modules(
-                dataSourceModule(),
+                repositoryModule(),
                 useCaseModule,
                 module {
                     factory<DispatcherProvider> {

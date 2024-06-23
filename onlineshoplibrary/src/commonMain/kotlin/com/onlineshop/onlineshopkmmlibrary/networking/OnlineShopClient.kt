@@ -5,7 +5,6 @@ import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateShopRequestMod
 import com.onlineshop.onlineshopkmmlibrary.networking.model.ProductEntity
 import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateProductRequestModel
 
-@Deprecated("This interface is deprecated, move logic by according client")
 interface OnlineShopClient {
 
     suspend fun testCall(): String

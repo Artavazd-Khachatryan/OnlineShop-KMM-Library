@@ -1,7 +1,7 @@
 package com.onlineshop.onlineshopkmmlibrary.databaseTests
 
 import com.onlineshop.database.OnlineShopDB
-import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.dataSourceModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.repositoryModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.databaseModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.sqlDelightTestDriverModule
 import com.onlineshop.onlineshopkmmlibrary.networking.model.Token
@@ -21,7 +21,7 @@ class TokenTableTest : KoinTest {
     fun setup() = runTest {
         startKoin {
             modules(
-                dataSourceModule(),
+                repositoryModule(),
                 databaseModule(),
                 sqlDelightTestDriverModule
             )

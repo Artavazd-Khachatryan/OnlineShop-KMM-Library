@@ -21,5 +21,4 @@ class LoginApi(private val client: HttpClient) {
             setBody(signInRequest)
         }.body<Token>()
     }
-
 }

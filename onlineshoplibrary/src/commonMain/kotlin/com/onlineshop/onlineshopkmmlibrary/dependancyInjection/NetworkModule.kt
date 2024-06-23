@@ -14,7 +14,8 @@ import io.ktor.serialization.kotlinx.json.*
 import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
-private const val BASE_URL = "/api/v1/"
+private const val PROTOCOL_VERSION = "v1"
+private const val BASE_PATH = "api/$PROTOCOL_VERSION/"
 
 expect val localhost: String
 
@@ -28,7 +29,9 @@ val DOMAIN = named("domain")
 
 fun networking() = module {
 
-    factory { LoginApi(get(LOGIN_CLIENT)) }
+    factory {
+        LoginApi(get(LOGIN_CLIENT))
+    }
 
     factory {
         httpClient {
@@ -46,19 +49,19 @@ fun networking() = module {
                 json()
             }
             defaultRequest {
-                val domain = get(LOCALHOST) as String
-                url("$domain/$BASE_URL")
+                url("${get<String>(LOCALHOST)}/$BASE_PATH")
             }
         }
     }
 
     factory(qualifier = LOGIN_CLIENT) {
         httpClient {
+            install(Logging)
             install(ContentNegotiation) {
                 json()
             }
             defaultRequest {
-                url(BASE_URL)
+                url("${get<String>(LOCALHOST)}/$BASE_PATH")
             }
         }
     }
