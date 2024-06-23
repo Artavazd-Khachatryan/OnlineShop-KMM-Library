@@ -2,7 +2,8 @@ package com.onlineshop.onlineshopkmmlibrary.useCaseTests
 
 import com.onlineshop.onlineshopkmmlibrary.async.DispatcherProvider
 import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
-import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.appModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.dataSourceModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.useCaseModule
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllShoppesUseCase
 import kotlinx.coroutines.test.*
 import org.koin.core.context.startKoin
@@ -24,7 +25,8 @@ class LoadShopsTest : KoinTest {
     fun setup() = runTest {
         startKoin {
             modules(
-                appModule(),
+                dataSourceModule(),
+                useCaseModule,
                 module {
                     factory<DispatcherProvider> {
                         val testDispatcher = UnconfinedTestDispatcher(testScheduler)
