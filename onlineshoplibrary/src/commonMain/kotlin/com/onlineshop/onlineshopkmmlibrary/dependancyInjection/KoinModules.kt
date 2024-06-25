@@ -9,12 +9,21 @@ import org.koin.core.KoinApplication
 import org.koin.dsl.module
 
 fun KoinApplication.initKoin() {
-    shopLibraryKoinModules()
+    shopLibraryKoinModules
 }
 
-fun KoinApplication.shopLibraryKoinModules() = modules(repositoryModule(), asyncModule(), networking(), databaseModule(), useCaseModule, sqlDelightDriverModule)
+val KoinApplication.shopLibraryKoinModules
+    get() = modules(
+        asyncModule,
+        apiModule,
+        clientModule,
+        networkDomainModule,
+        databaseModule,
+        useCaseModule,
+        sqlDelightDriverModule
+    )
 
-fun repositoryModule() = module {
+val repositoryModule = module {
     factory<ShopRepository> {
         NetworkShopRepository(get())
     }

@@ -10,7 +10,7 @@ class CheckKoinModules: KoinTest {
     @Test
     fun checkKoinModules() {
         checkModules {
-            shopLibraryKoinModules()
+            shopLibraryKoinModules
         }
     }
 }

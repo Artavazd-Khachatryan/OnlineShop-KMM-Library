@@ -5,6 +5,7 @@ import com.onlineshop.onlineshopkmmlibrary.datasource.TestDataSource
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.repositoryModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.useCaseModule
 import com.onlineshop.onlineshopkmmlibrary.useCases.LoadAllShoppesUseCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.*
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
@@ -21,11 +22,12 @@ class LoadShopsTest : KoinTest {
     private val loadAllShoppesUseCase: LoadAllShoppesUseCase by inject()
     private val testDataSource: TestDataSource by inject()
 
+    @OptIn(ExperimentalCoroutinesApi::class)
     @BeforeTest
     fun setup() = runTest {
         startKoin {
             modules(
-                repositoryModule(),
+                repositoryModule,
                 useCaseModule,
                 module {
                     factory<DispatcherProvider> {

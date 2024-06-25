@@ -17,22 +17,20 @@ import org.koin.dsl.module
 private const val PROTOCOL_VERSION = "v1"
 private const val BASE_PATH = "api/$PROTOCOL_VERSION/"
 
-expect val localhost: String
-
-private const val domain = "domaint uri"
-
+private const val domain = "domain uri"
 val LOGIN_CLIENT = named("Authentication")
-
 val LOCALHOST = named("localhost")
-
 val DOMAIN = named("domain")
 
-fun networking() = module {
+expect val localhost: String
 
+val apiModule = module {
     factory {
         LoginApi(get(LOGIN_CLIENT))
     }
+}
 
+val clientModule = module {
     factory {
         httpClient {
             install(Auth) {
@@ -67,12 +65,15 @@ fun networking() = module {
     }
 
     factory<OnlineShopClient> { OnlineShopClientImpl(get()) }
+}
 
-    single<String>(qualifier = LOCALHOST) {
-        localhost
-    }
+val networkDomainModule = module {
 
     single<String>(qualifier = DOMAIN) {
         domain
+    }
+
+    single<String>(qualifier = LOCALHOST) {
+        localhost
     }
 }

@@ -21,8 +21,8 @@ class TokenTableTest : KoinTest {
     fun setup() = runTest {
         startKoin {
             modules(
-                repositoryModule(),
-                databaseModule(),
+                repositoryModule,
+                databaseModule,
                 sqlDelightTestDriverModule
             )
         }

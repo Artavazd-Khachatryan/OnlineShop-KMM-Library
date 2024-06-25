@@ -1,6 +1,8 @@
 package com.onlineshop.onlineshopkmmlibrary.apiTests
 
-import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.networking
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.apiModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.clientModule
+import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.networkTestDomainModule
 import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateShopRequestModel
 import com.onlineshop.onlineshopkmmlibrary.networking.model.CreateProductRequestModel
 import com.onlineshop.onlineshopkmmlibrary.networking.OnlineShopClient
@@ -17,13 +19,16 @@ import org.koin.test.KoinTest
 import org.koin.test.inject
 import kotlin.test.*
 
-
 class TestHttpClient : KoinTest {
 
     @BeforeTest
     fun setup() = runTest {
         startKoin {
-            modules(networking())
+            modules(
+                apiModule,
+                clientModule,
+                networkTestDomainModule
+            )
         }
     }
 
@@ -79,7 +84,7 @@ class TestHttpClient : KoinTest {
                 category = "test"
             )
         )
-        assertTrue(product.id != null)
+        assertTrue(product.id != 0L)
     }
 
     @Test

@@ -8,8 +8,8 @@ import org.koin.dsl.module
 
 actual val sqlDelightTestDriverModule: Module = module {
     factory<SqlDriver> {
-       JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also {
-           OnlineShopDB.Schema.create(it)
-       }
+        JdbcSqliteDriver(JdbcSqliteDriver.IN_MEMORY).also {
+            OnlineShopDB.Schema.create(it)
+        }
     }
 }

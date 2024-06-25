@@ -6,7 +6,7 @@ import com.onlineshop.onlineshopkmmlibrary.repository.TokenRepository
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-fun databaseModule() = module {
+val databaseModule = module {
 
     factory { TokenRepository(get<OnlineShopDB>().tokenEntityQueries) }
 

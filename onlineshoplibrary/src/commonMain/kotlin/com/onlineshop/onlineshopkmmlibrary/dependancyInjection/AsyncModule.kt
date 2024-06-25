@@ -5,7 +5,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import org.koin.dsl.module
 
-fun asyncModule() = module {
+val asyncModule = module {
     factory<DispatcherProvider> {
         DispatcherProvider(
             main = Dispatchers.Main,
