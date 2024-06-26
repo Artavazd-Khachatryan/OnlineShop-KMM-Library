@@ -20,7 +20,8 @@ val KoinApplication.shopLibraryKoinModules
         networkDomainModule,
         databaseModule,
         useCaseModule,
-        sqlDelightDriverModule
+        sqlDelightDriverModule,
+        repositoryModule
     )
 
 val repositoryModule = module {

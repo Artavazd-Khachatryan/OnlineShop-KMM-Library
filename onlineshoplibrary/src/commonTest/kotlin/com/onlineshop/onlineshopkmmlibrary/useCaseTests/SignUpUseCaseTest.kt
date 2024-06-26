@@ -7,7 +7,7 @@ import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.databaseModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.networkTestDomainModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.sqlDelightTestDriverModule
 import com.onlineshop.onlineshopkmmlibrary.dependancyInjection.useCaseModule
-import com.onlineshop.onlineshopkmmlibrary.useCases.SignUpUseCase
+import com.onlineshop.onlineshopkmmlibrary.useCases.authentication.RegistrationUseCase
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
@@ -26,7 +26,7 @@ import kotlin.test.assertTrue
 // TODO Cover more test cases
 class SignUpUseCaseTest : KoinTest {
 
-    private val signUpUseCase: SignUpUseCase by inject()
+    private val registrationUseCase: RegistrationUseCase by inject()
 
     @OptIn(ExperimentalCoroutinesApi::class)
     @BeforeTest
@@ -60,7 +60,7 @@ class SignUpUseCaseTest : KoinTest {
     @Test
     fun testSignUp_ValidParams_Success() = runBlocking {
         var loginSuccess = false
-        signUpUseCase.apply {
+        registrationUseCase.apply {
                 onSuccess = {
                     loginSuccess = true
                 }

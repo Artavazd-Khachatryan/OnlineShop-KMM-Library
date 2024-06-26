@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.plugin.mpp.apple.XCFramework
 
 plugins {
@@ -35,6 +37,9 @@ kotlin {
             baseName = "onlineshoplibrary"
             xcf.add(this)
             isStatic = true
+            freeCompilerArgs += listOf(
+                "-Xbinary=bundleId=com.onlineshop.onlineshopkmmlibrary"
+            )
         }
     }
 
